@@ -4,20 +4,17 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QFile>
-//#include <QFileDialog>
 #include <QPixmap>
 #include <QPalette>
 
 
 addservicedialog::addservicedialog(QWidget *parent)
-    : QDialog(parent)                     // Call parent constructor
-    , ui(new Ui::addservicedialog)        // Create UI instance
+    : QDialog(parent)                     
+    , ui(new Ui::addservicedialog)       
 {
     ui->setupUi(this);
-    setBackground();                      //set bg img
+    setBackground();                      
 
-  //  connect(ui->btnsave , &QPushButton::clicked,this, &QDialog::accept);
-  // connect(ui->btncancel,&QPushButton::clicked,this, &QDialog::reject);
 }
 
 addservicedialog::~addservicedialog()
@@ -27,29 +24,28 @@ addservicedialog::~addservicedialog()
 //-----------------Function to set bg image of dialog----------------
 void addservicedialog::setBackground()
 {
-    QPixmap bkgnd(":/img/img/18.jpg");       // Load image to qpixmap
+    QPixmap bkgnd(":/img/img/18.jpg");       
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio,
-                                       Qt::SmoothTransformation); // Scale it to window size
+                                       Qt::SmoothTransformation);
 
-    QPalette palette;                                     // Create new palette
-    palette.setBrush(QPalette::Window, bkgnd);            // Set img as window bg
-    this->setAutoFillBackground(true);                    // Enable bg filling
-    this->setPalette(palette);                            //apply palette to window
+    QPalette palette;                                     
+    palette.setBrush(QPalette::Window, bkgnd);            
+    this->setAutoFillBackground(true);                   
+    this->setPalette(palette);                            
 }
 
-//-------------called when the window is resized------------------------
+//-------------func call when window is resized------------------------
 void addservicedialog::resizeEvent(QResizeEvent *event)
 {
-    QDialog::resizeEvent(event);                   // Call base class implementation
-    setBackground();                               // Resize bg img to match new size
+    QDialog::resizeEvent(event);                   
+    setBackground();                               
 }
 
-
 void addservicedialog::on_btnsave_clicked() {
-    ServiceEntry s;                                 // Create a ServiceEntry obj
+    ServiceEntry s;                                 
     s.name = ui->namelineEdit->text();
     s.phone = ui->phonelineEdit->text();
-    s.address = ui->addresslineEdit->text();           //get all fields input
+    s.address = ui->addresslineEdit->text();           
     s.vehicleNumber = ui->vehiclenolineEdit->text();
     s.brand = ui->brandlineEdit->text();  
     s.model = ui->modellineEdit->text();
@@ -57,21 +53,21 @@ void addservicedialog::on_btnsave_clicked() {
     s.serviceType = ui->servicecomboBox->currentText();
     s.status = ui->statuscomboBox->currentText();
 
-    QFile file("services.csv");                            //To save in File-create a QFile obj
-    if (file.open(QIODevice::Append | QIODevice::Text)) {       //open in append mode
-        QTextStream out(&file);                              // Create output stream linked wid file
+    QFile file("services.csv");                            
+    if (file.open(QIODevice::Append | QIODevice::Text)) {       
+        QTextStream out(&file);                              
             out << s.name << "," << s.phone << "," << s.address << ","
                 << s.vehicleNumber << "," << s.brand << "," << s.model << ","
-                << s.date <<","<< s.serviceType << "," << s.status <<  "\n";  //writes data to file
+                << s.date <<","<< s.serviceType << "," << s.status <<  "\n";  
         file.close();
     }
 
-    emit serviceEntryAdded(s);                     // Emit custom signal to notify parent
+    emit serviceEntryAdded(s);                     
     accept();
 }
 
 void addservicedialog::on_btncancel_clicked()
 {
-    reject();                             // Close dialog with cancel
+    reject();                            
 }
 
