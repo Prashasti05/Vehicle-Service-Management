@@ -1,13 +1,13 @@
-#ifndef OPENINGWINDOW_H                // Include guard to prevent multiple inclusions
+#ifndef OPENINGWINDOW_H                
 #define OPENINGWINDOW_H
 
-#include <QDialog>                   // declare Qdialog Base class
+#include <QDialog>                   
 
-namespace Ui {                      // Forward declaration of  openwindow class in ui namespace
+namespace Ui {                      
 class OpeningWindow;
 }
 
-class OpeningWindow : public QDialog     // Inherits from QDialog
+class OpeningWindow : public QDialog     
 {
     Q_OBJECT
 
@@ -17,11 +17,10 @@ public:
 
 private slots:
 
-
-    void on_schedulebtn_clicked();   //get started button
+    void on_schedulebtn_clicked();   
 
 private:
-    Ui::OpeningWindow *ui;            // Pointer to the UI
+    Ui::OpeningWindow *ui;            
 
 };
 
