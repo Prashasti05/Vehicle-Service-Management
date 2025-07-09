@@ -3,8 +3,7 @@
 #include"ServiceEntry.h"
 
 #include <QDialog>
-#include"ServiceEntry.h"                // Include the definition of ServiceEntry
-//#include <QVector>
+#include"ServiceEntry.h"               
 #include <QString>
 
 namespace Ui {
@@ -24,15 +23,14 @@ private slots:
     void on_btncancel_clicked();
 
 signals:
-    void serviceEntryAdded(const ServiceEntry &entry);        // Signal emitted when new service is added
-
+    void serviceEntryAdded(const ServiceEntry &entry);       
 
 private:
     Ui::addservicedialog *ui;
-    void setBackground();                                   // Helper function to set bg img
+    void setBackground();                                  
 
 protected:
-    void resizeEvent(QResizeEvent *event)override;          // Handle resizing of the dialog
-};                                                    //automatically calls whenever  window/dialog is resized by user
+    void resizeEvent(QResizeEvent *event)override;          
+};                                                   
 
 #endif // ADDSERVICEDIALOG_H
