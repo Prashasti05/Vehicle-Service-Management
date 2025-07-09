@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>836</width>
+    <height>616</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Service Page</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/img/img/icon2.png</normaloff>:/img/img/icon2.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*background-image: url(:/img/img/2.jpg);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="btnadd">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>260</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Showcard Gothic</family>
+      <pointsize>-1</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QPushButton {
+        color: white;
+	background-color: rgb(21, 111, 179);
+        border: 3px solid white;          /* White border */
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+
+    QPushButton:hover {
+        background-color: #00BCD4;        /* Color on hover */
+        border: 2px solid white;
+    }
+
+    QPushButton:pressed {
+        background-color: #0097A7;        /* Color when pressed */
+    }
+</string>
+    </property>
+    <property name="text">
+     <string>Add  Service  Request</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnupdate">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>330</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Showcard Gothic</family>
+      <pointsize>-1</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        color: white;
+	background-color: rgb(21, 111, 179);
+        border: 3px solid white;          /* White border */
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+
+    QPushButton:hover {
+        background-color: #00BCD4;        /* Color on hover */
+        border: 2px solid white;
+    }
+
+    QPushButton:pressed {
+        background-color: #0097A7;        /* Color when pressed */
+    }</string>
+    </property>
+    <property name="text">
+     <string>Update Services</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btncustomerinfo">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>398</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Showcard Gothic</family>
+      <pointsize>-1</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        color: white;
+	background-color: rgb(21, 111, 179);
+        border: 3px solid white;          /* White border */
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+
+    QPushButton:hover {
+        background-color: #00BCD4;        /* Color on hover */
+        border: 2px solid white;
+    }
+
+    QPushButton:pressed {
+        background-color: #0097A7;        /* Color when pressed */
+    }</string>
+    </property>
+    <property name="text">
+     <string>Service  Request  Report</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnexit">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>540</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bell MT</family>
+      <pointsize>14</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background-color: rgb(21, 111, 179);
+    color: white;                  /* White text */
+    padding: 8px 16px;             /* Inner spacing */
+    font-weight: bold;
+border-radius: 20px ;
+border:3px solid white;
+
+ }
+QPushButton:hover {
+         /* Darker blue on hover */
+	background-color: rgb(8, 160, 255);
+}
+
+QPushButton:pressed {
+    background-color: #003d80;     /* Even darker on press */
+}</string>
+    </property>
+    <property name="text">
+     <string>Exit</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnsearch">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>470</y>
+      <width>281</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Showcard Gothic</family>
+      <pointsize>-1</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+        color: white;
+	background-color: rgb(21, 111, 179);
+        border: 3px solid white;          /* White border */
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+
+    QPushButton:hover {
+        background-color: #00BCD4;        /* Color on hover */
+        border: 2px solid white;
+    }
+
+    QPushButton:pressed {
+        background-color: #0097A7;        /* Color when pressed */
+    }</string>
+    </property>
+    <property name="text">
+     <string>Search  Services</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdittotal">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>20</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bell MT</family>
+      <pointsize>25</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(117, 207, 255);
+border: 5px solid white;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditcompleted">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>20</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bell MT</family>
+      <pointsize>25</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+border: 5px solid white;
+background-color: rgb(170, 255, 127);</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditpending">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>20</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bell MT</family>
+      <pointsize>25</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+border: 5px solid white;
+background-color: rgb(255, 156, 163);</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>100</y>
+      <width>75</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/img/img/icon2.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>60</y>
+      <width>291</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ravie</family>
+      <pointsize>20</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Service your</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>51</x>
+      <y>101</y>
+      <width>201</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ravie</family>
+      <pointsize>26</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/*color: rgb(21, 111, 179);*/
+color: rgb(19, 52, 161);</string>
+    </property>
+    <property name="text">
+     <string>Vehicle</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>140</y>
+      <width>221</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ravie</family>
+      <pointsize>24</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>today !!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>90</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Rockwell</family>
+      <pointsize>10</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 10pt &quot;Rockwell&quot;;
+color: rgb(19, 52, 161);</string>
+    </property>
+    <property name="text">
+     <string>Total Services</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>90</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Rockwell</family>
+      <pointsize>10</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 10pt &quot;Rockwell&quot;;
+color: rgb(19, 52, 161);</string>
+    </property>
+    <property name="text">
+     <string>Completed Services</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>90</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Rockwell</family>
+      <pointsize>10</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 10pt &quot;Rockwell&quot;;
+color: rgb(19, 52, 161);</string>
+    </property>
+    <property name="text">
+     <string>Pending Services</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>btnadd</zorder>
+   <zorder>btnupdate</zorder>
+   <zorder>btncustomerinfo</zorder>
+   <zorder>btnexit</zorder>
+   <zorder>btnsearch</zorder>
+   <zorder>lineEdittotal</zorder>
+   <zorder>lineEditcompleted</zorder>
+   <zorder>lineEditpending</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_3</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>836</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
