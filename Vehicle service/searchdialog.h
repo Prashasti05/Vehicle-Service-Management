@@ -27,11 +27,8 @@ private:
     void loadDataFromFile();
 
 protected:
-    void resizeEvent(QResizeEvent *event)override;    //Called when the window is resized.
-    void showEvent(QShowEvent *event)override;        //Called when dialog is shown.Useful for refreshing/resetting UI.
+    void resizeEvent(QResizeEvent *event)override;    
+    void showEvent(QShowEvent *event)override;        
 };
 
 #endif // SEARCHDIALOG_H
-
-//original data List---->const QList<ServiceEntry> & entries
-//local, modifiable copy within the dialog--->QList<ServiceEntry> allEntries;
