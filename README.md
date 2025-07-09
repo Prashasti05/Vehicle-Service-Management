@@ -24,7 +24,7 @@ A desktop application to manage vehicle service entries using the Qt Framework. 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Language**: C++
 - **Framework**: Qt (Qt Widgets)
