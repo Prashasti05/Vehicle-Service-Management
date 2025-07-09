@@ -16,22 +16,20 @@ public:
     explicit UpdateDialog(QWidget *parent = nullptr);
     ~UpdateDialog();
 
-    void setEntries(const QList<ServiceEntry>& list);   // Setter for the list of entries to be updated
-    QList<ServiceEntry>getUpdatedEntries();             // Getter to retrieve updated entries
+    void setEntries(const QList<ServiceEntry>& list);   
+    QList<ServiceEntry>getUpdatedEntries();             
 
 private slots:
-   // void on_searchButton_clicked();
     void on_updateButton_clicked(); 
-    void on_entrycomboBox_currentIndexChanged(int index);     // Triggers when new entry is selected in combo box
+    void on_entrycomboBox_currentIndexChanged(int index);     
 
 private:
     Ui::UpdateDialog *ui;
-
     QList<ServiceEntry> entries;
     void setBackground();
 
 protected:
-    void resizeEvent(QResizeEvent *event)override;              // Handles window resizing
+    void resizeEvent(QResizeEvent *event)override;              
 
 };
 
