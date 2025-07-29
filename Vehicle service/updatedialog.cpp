@@ -7,14 +7,12 @@ UpdateDialog::UpdateDialog(QWidget *parent)
     , ui(new Ui::UpdateDialog)
 {
     ui->setupUi(this);
-   // QList<ServiceEntry> getUpdatedEntries();
 }
 
 UpdateDialog::~UpdateDialog()
 {
     delete ui;
 }
-
 
 void UpdateDialog::setBackground()
 {
@@ -30,39 +28,37 @@ void UpdateDialog::setBackground()
 void UpdateDialog::resizeEvent(QResizeEvent *event)
 {
     QDialog::resizeEvent(event);
-    setBackground();  // ← Update bg size on window resize
+    setBackground();  
 }
-
-
 
 void UpdateDialog::setEntries(const QList<ServiceEntry>& list)
 {
-    entries = list;                          // Store the entries
-    ui->entrycomboBox->clear();              // Clear existing combo box items
+    entries = list;                          
+    ui->entrycomboBox->clear();             
 
-    for (const auto &entry : entries) {       //iterate in each entries
-        ui->entrycomboBox->addItem(entry.name); //Adds it as an item to entrycomboBox, which allows users to select from dropdown menu.
+    for (const auto &entry : entries) {      
+        ui->entrycomboBox->addItem(entry.name); 
     }
 
-    if (!entries.isEmpty()) {                       //Checks if the list is not empty
-        ui->entrycomboBox->setCurrentIndex(0);        // Select first item in combobox by default
-        on_entrycomboBox_currentIndexChanged(0);       // Load its data into form
+    if (!entries.isEmpty()) {                       
+        ui->entrycomboBox->setCurrentIndex(0);        
+        on_entrycomboBox_currentIndexChanged(0);      
     }
 }
 
 QList<ServiceEntry> UpdateDialog::getUpdatedEntries()
 {
-    return entries;                      // Return updated entries
+    return entries;                     
 }
 
 void UpdateDialog::on_updateButton_clicked()
 {
-    int index = ui->entrycomboBox->currentIndex();         // Get selected entry index
-    if (index >= 0 && index < entries.size()) {            //Ensures selected index is within bounds of entries list
+    int index = ui->entrycomboBox->currentIndex();         
+    if (index >= 0 && index < entries.size()) {           
 
         entries[index].name = ui->namelineEdit->text();
-        entries[index].phone = ui->phonelineEdit->text();    //Takes data entered by user in various input fields in form
-        entries[index].address = ui->addresslineEdit->text();//and Updates selected entry (entries[index]) with new data.
+        entries[index].phone = ui->phonelineEdit->text();   
+        entries[index].address = ui->addresslineEdit->text();
         entries[index].vehicleNumber = ui->vehiclelineEdit->text();
         entries[index].brand = ui->brandlineEdit->text();
         entries[index].model = ui->modellineEdit->text();
@@ -70,15 +66,15 @@ void UpdateDialog::on_updateButton_clicked()
         entries[index].status = ui->statuscomboBox->currentText();
 
         QMessageBox::information(this, "Success", "Service entry updated.");
-        accept();                                          // Close dialog and return with success
+        accept();                                          
     }
 }
 
 void UpdateDialog::on_entrycomboBox_currentIndexChanged(int index)
 {
 
-    if (index >= 0 && index < entries.size()) {        //checks if the selected index is within valid range:
-        // Populate form fields and sets selected entry's data
+    if (index >= 0 && index < entries.size()) {       
+        
         ui->namelineEdit->setText(entries[index].name);
         ui->phonelineEdit->setText(entries[index].phone);
         ui->addresslineEdit->setText(entries[index].address);
