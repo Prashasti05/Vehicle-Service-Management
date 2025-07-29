@@ -1,5 +1,5 @@
-#include "mainwindow.h"                      // Includes the MainWindow class header
-#include "ui_mainwindow.h"                    // Includes UI definition
+#include "mainwindow.h"                     
+#include "ui_mainwindow.h"                    
 #include "addservicedialog.h"
 #include "ServiceEntry.h"
 #include<QFile>
@@ -10,10 +10,9 @@
 #include <QString>
 #include <QDate>
 
-#include <QPixmap>                          // For background img
-#include <QPalette>                         // For setting img
+#include <QPixmap>                          
+#include <QPalette>                         
 #include <QResizeEvent>
-//#include <QPainter>                          // For painting custom graphics (bg)
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,11 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
     loadDataFromFile();
     updateServiceCounts();
 
-   //setBackground();
-   // connect(ui->btnadd , &QPushButton::clicked,this, &MainWindow::on_btnadd_clicked);
-   // connect(ui->btncustomerinfo,&QPushButton::clicked,this, &MainWindow::on_btncustomerinfo_clicked);
-   // connect(ui->btnsearch, &QPushButton::clicked, this, &MainWindow::on_btnsearch_clicked);
-
 }
 
 MainWindow::~MainWindow()
@@ -38,63 +32,56 @@ MainWindow::~MainWindow()
 
 void MainWindow::setBackground()
 {
-    QPixmap bkgnd(":/img/img/19.jpg");      //add img from resource nd scale it
+    QPixmap bkgnd(":/img/img/19.jpg");     
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
-    QPalette palette;                            //loads and sets img using palette and pixmap
-    palette.setBrush(QPalette::Window, bkgnd);   //to apply full size img behind dialog
+    QPalette palette;                            
+    palette.setBrush(QPalette::Window, bkgnd);  
     this->setAutoFillBackground(true);
     this->setPalette(palette);
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    QMainWindow::resizeEvent(event);         // Call base class implementation
-    setBackground();                     // Resize bg img to match new size
-
+    QMainWindow::resizeEvent(event);         
+    setBackground();                    
 }
-
 
 void MainWindow::on_btnadd_clicked()
 {
-    addservicedialog dialog(this);            // create instance of add service dialog
+    addservicedialog dialog(this);            
 
-    // Connect custom signal from dialog to a lambda function to add entry to list
     connect(&dialog, &addservicedialog::serviceEntryAdded, this,[this](const ServiceEntry &entry){
-        entries.append(entry);               // Append the new service entry to the list
+        entries.append(entry);               
     });
-    dialog.exec();                           // Show dialog and wait until user closes it
-
-    updateServiceCounts();                  // Refresh totals on main screen
+    dialog.exec();                           
+    updateServiceCounts();                  
 }
 
 
 void MainWindow::on_btncustomerinfo_clicked()
 {
-    infodialog *dialog = new infodialog(entries, this);     // Create instance of InfoDialog
+    infodialog *dialog = new infodialog(entries, this);     
 
-   // Connect signal to automatically update counts when data is changed in InfoDialog
    connect(dialog, &infodialog::serviceDataChanged, this, &MainWindow::updateServiceCounts);
 
-    dialog->exec();                                   // Show InfoDialog
-    delete dialog;                                    // Delete the dialog after closing (heap cleanup)
-
+    dialog->exec();                                  
+    delete dialog;                                    
 }
 
 QList<ServiceEntry> MainWindow::loadDataFromFile()
 {
-    QList<ServiceEntry> list;                       // Temporary list to hold read entries
-    QFile file("services.csv");                     //take qfile obj to open csv file
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) //open in read only mode
-        return list;                                        // If file can't open, return empty list
+    QList<ServiceEntry> list;                       
+    QFile file("services.csv");                    
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) 
+        return list;                                       
 
+    QTextStream in(&file);                          
 
-    QTextStream in(&file);                          // Create a text stream to read lines
-
-    while (!in.atEnd()) {                           //untill it reaches last of file
-        QString line = in.readLine();               // Read a single line
-        QStringList parts = line.split(",");        // Split the line into values
-        if (parts.size() >= 9) {                    // Ensure line has all required fields
+    while (!in.atEnd()) {                           
+        QString line = in.readLine();               
+        QStringList parts = line.split(",");        
+        if (parts.size() >= 9) {                   
             ServiceEntry entry;
             entry.name = parts[0];
             entry.phone = parts[1];
@@ -106,23 +93,23 @@ QList<ServiceEntry> MainWindow::loadDataFromFile()
             entry.serviceType = parts[7];
             entry.status=parts[8];
 
-            list.append(entry);                   // Add to the temporary list
+            list.append(entry);                   
         }
     }
     file.close();
 
-    entries =list;                               // Copy temporary list to member variable
-    return list;                                 //return list
+    entries =list;                               
+    return list;                                
 }
 
 void MainWindow::saveDataToFile()
 {
-    QFile file("services.csv");               //take qfile obj to open csv file
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))   //open in write only mode
-        return;                             //if file not open,abort
+    QFile file("services.csv");               
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))   
+        return;                            
 
-    QTextStream out(&file);                 // Text stream for writing lines
-     // Write each entry as a comma-separated line
+    QTextStream out(&file);                 
+   
     for (const ServiceEntry &entry : entries) {
         out << entry.name << "," << entry.phone << "," << entry.address << ","
             << entry.vehicleNumber << "," << entry.brand << "," << entry.model << ","
@@ -131,63 +118,60 @@ void MainWindow::saveDataToFile()
     file.close();
 }
 
-
 void MainWindow::on_btnupdate_clicked()
 {
-    QList<ServiceEntry> updatedList=loadDataFromFile();     // Reload entries from file
+    QList<ServiceEntry> updatedList=loadDataFromFile();    
 
-    UpdateDialog dialog(this);                            // Create UpdateDialog
-    dialog.setEntries(updatedList);                       // Provide it with current data
+    UpdateDialog dialog(this);                            
+    dialog.setEntries(updatedList);                     
 
-     // If user accepts the dialog (e.g., clicked update)
     if(dialog.exec()==QDialog::Accepted){
-        entries=dialog.getUpdatedEntries();              // Retrieve updated list
+        entries=dialog.getUpdatedEntries();              
 
-        saveDataToFile();                                 //save changes ti file
-        loadDataFromFile();                               //reload data
-        updateServiceCounts();                            //refresh count display
+        saveDataToFile();                                 
+        loadDataFromFile();                              
+        updateServiceCounts();                           
     }
 }
 
 void MainWindow::on_btnsearch_clicked()
 {
-    SearchDialog dialog(entries, this);  // Pass current entries to search dialog
-    dialog.exec();                       // Show dialog
+    SearchDialog dialog(entries, this);  
+    dialog.exec();                       
 }
 
 void MainWindow::on_btnShowTotal_clicked()
 {
-    int count =0;                                                // Count of today's entries
-    QString today=QDate::currentDate().toString("yyyy-MM-dd");     // Get current date as string
-    for(const ServiceEntry &entry :entries){               //run a loop for all entries
-        if(entry.date ==today)                               // If service date is today
+    int count =0;                                               
+    QString today=QDate::currentDate().toString("yyyy-MM-dd");    
+    for(const ServiceEntry &entry :entries){              
+        if(entry.date ==today)                             
             count++;
     }
 }
 
-// Function to update total/completed/pending counts nd display in QLineEdits
+
 void MainWindow::updateServiceCounts()
 {
-    QFile file("services.csv");                                  //take qfile obj to open csv file
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))        //open in read only mode
+    QFile file("services.csv");                                 
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))        
         return;
 
-    QTextStream in(&file);                                     //Create a QTextStream to read text from file.
-    int total = 0, completed = 0, pending = 0;       //Initialize counters for total, completed,nd pending services
+    QTextStream in(&file);                                    
+    int total = 0, completed = 0, pending = 0;       
 
-    while (!in.atEnd()) {                                     //Read the file line by line untill end
-        QString line = in.readLine();                         //read one line from file
-        QStringList fields = line.split(",");                // Split the line into values
-        if (fields.size() < 9) continue;                     // Skip the line if it doesn't have enough fields
+    while (!in.atEnd()) {                                    
+        QString line = in.readLine();                         
+        QStringList fields = line.split(",");                
+        if (fields.size() < 9) continue;                    
 
-        QString status = fields[8].trimmed();            //Extract and trim the "status" field (9th column, index 8)
-        total++;                                              // Count this line as a valid service entry
+        QString status = fields[8].trimmed();            
+        total++;                                           
 
-        //Check the value of status (case-insensitive comparison)
         if (status.compare("Completed", Qt::CaseInsensitive) == 0)
-            completed++;                                     // Increment completed count if status is "Completed"
+            completed++;                                     
         else if (status.compare("Pending", Qt::CaseInsensitive) == 0)
-            pending++;                                      // Increment pending count if status is "Pending"
+            pending++;                                     
     }
 
     file.close();
@@ -200,6 +184,6 @@ void MainWindow::updateServiceCounts()
 
 void MainWindow::on_btnexit_clicked()
 {
-    QApplication::quit();        //to exit the application
+    QApplication::quit();        
 }
 
