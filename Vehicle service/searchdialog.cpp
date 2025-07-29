@@ -20,33 +20,31 @@ void SearchDialog::setBackground()
     QPixmap bkgnd(":/img/img/52.jpg");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
-    QPalette palette;                            //loads and sets mg using palette and pixmap
-    palette.setBrush(QPalette::Window, bkgnd);   //to apply full size img behind dialog
+    QPalette palette;                           
+    palette.setBrush(QPalette::Window, bkgnd);   
     this->setAutoFillBackground(true);
     this->setPalette(palette);
 }
 
 void SearchDialog::resizeEvent(QResizeEvent *event)
 {
-    QDialog::resizeEvent(event);         // Call base class implementation
-    setBackground();                     // Resize bg img to match new size
-
+    QDialog::resizeEvent(event);        
+    setBackground();                     
 }
-
 
 void SearchDialog::on_btnsearch_clicked()
 {
-    QString name = ui->namelineEdit->text().trimmed();   //get name, phone, model
+    QString name = ui->namelineEdit->text().trimmed();   
     QString phone = ui->phonelineEdit->text().trimmed();
     QString model = ui->modellineEdit->text().trimmed();
 
-    QString result;                                     // Store results to be displayed
+    QString result;                                     
 
     // Loop through all stored service entries
     for (const ServiceEntry& entry : allEntries) {
         bool match = false;
 
-        // Check each field for partial match (case-insensitive)
+        // Check each field for match 
         if (!name.isEmpty() && entry.name.contains(name, Qt::CaseInsensitive)) match = true;
         if (!phone.isEmpty() && entry.phone.contains(phone, Qt::CaseInsensitive)) match = true;
         if (!model.isEmpty() && entry.model.contains(model, Qt::CaseInsensitive)) match = true;
@@ -75,21 +73,21 @@ void SearchDialog::on_btnsearch_clicked()
 
 void SearchDialog::loadDataFromFile()
 {
-    allEntries.clear();                          // Clear previous data to avoid duplicate
+    allEntries.clear();                         
 
-    QFile file("services.csv");                   //open file in readonly mode
+    QFile file("services.csv");                  
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;                                   //if doesnt opens return
+        return;                                   
 
-    QTextStream in(&file);                      // Create text stream to read file
-    while (!in.atEnd()) {                       //until file ends
-        QString line = in.readLine();           // Read a line from file
-        QStringList parts = line.split(",");    // Split line into fields using comma
+    QTextStream in(&file);                      
+    while (!in.atEnd()) {                      
+        QString line = in.readLine();           
+        QStringList parts = line.split(",");    
 
-        if (parts.size() < 9) continue;          // Skip if not enough fields
+        if (parts.size() < 9) continue;          
 
-        ServiceEntry entry;                    // Fill ServiceEntry struct with CSV data
+        ServiceEntry entry;                  
         entry.name = parts[0];
         entry.phone = parts[1];
         entry.address = parts[2];
@@ -100,14 +98,14 @@ void SearchDialog::loadDataFromFile()
         entry.serviceType = parts[7];
         entry.status=parts[8];
 
-        allEntries.append(entry);             //Add to the list
+        allEntries.append(entry);             
     }
     file.close();
 }
 
 void SearchDialog::showEvent(QShowEvent *event)
 {
-    loadDataFromFile();                     // Reload data every time window is show
-    QDialog::showEvent(event);              // Call base class implementatio
+    loadDataFromFile();                     
+    QDialog::showEvent(event);           
 }
 
