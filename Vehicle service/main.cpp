@@ -1,14 +1,14 @@
-#include "openingwindow.h"     // Include custom opening window class
+#include "openingwindow.h"    
 
-#include <QApplication>        // Include core Qt application class
+#include <QApplication>       
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);  //create instance of Qapplication
+    QApplication a(argc, argv);  
 
 
-    OpeningWindow w;   //create instance of open window
-    w.show();          //display window
+    OpeningWindow w;   
+    w.show();          
 
-    return a.exec();    // Start the event loop
+    return a.exec();    
 }
